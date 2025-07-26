@@ -109,7 +109,7 @@ export default function TemplateEditor({
               </div>
               <div className="text-right">
                 <p className="text-sm text-gray-600">Powered by</p>
-                <p className="font-medium text-blue-600">Sulemait SMS</p>
+                <p className="font-medium text-blue-600">Sulamit SMS</p>
               </div>
             </div>
           </div>
