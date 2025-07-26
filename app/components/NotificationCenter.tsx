@@ -172,7 +172,7 @@ export default function NotificationCenter() {
             initial={{ opacity: 0, scale: 0.95, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
-            className="fixed top-20 right-4 w-96 bg-white rounded-lg shadow-xl border border-gray-200 z-[99999]"
+            className="fixed top-20 right-2 sm:right-4 w-80 sm:w-96 bg-white rounded-lg shadow-xl border border-gray-200 z-[99999] max-h-[80vh] overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200">

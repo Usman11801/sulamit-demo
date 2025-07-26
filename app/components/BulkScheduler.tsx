@@ -436,7 +436,7 @@ export default function BulkScheduler({ onClose }: BulkSchedulerProps) {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="bg-white/95 backdrop-blur-lg rounded-2xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-white/20"
+        className="bg-white/95 backdrop-blur-lg rounded-2xl p-4 sm:p-6 max-w-2xl w-full mx-4 sm:mx-0 max-h-[90vh] overflow-y-auto shadow-2xl border border-white/20"
       >
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-gray-800">

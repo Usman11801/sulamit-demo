@@ -375,7 +375,7 @@ Best wishes,
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="bg-white/95 backdrop-blur-lg rounded-2xl p-6 max-w-md w-full shadow-2xl border border-white/20"
+            className="bg-white/95 backdrop-blur-lg rounded-2xl p-4 sm:p-6 max-w-md w-full mx-4 sm:mx-0 shadow-2xl border border-white/20"
           >
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-bold text-gray-800">

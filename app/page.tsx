@@ -24,6 +24,7 @@ import {
   Activity,
   Type,
   Download,
+  Menu,
 } from "lucide-react";
 import CardPreview from "./components/CardPreview";
 import TemplateEditor from "./components/TemplateEditor";
@@ -155,6 +156,7 @@ export default function Dashboard() {
   const [showBulkScheduler, setShowBulkScheduler] = useState(false);
   const [showCardPreview, setShowCardPreview] = useState(false);
   const [editingTemplate, setEditingTemplate] = useState<any>(null);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const handleSMSFlow = () => {
     setShowSMSFlow(true);
@@ -341,7 +343,7 @@ export default function Dashboard() {
         exit={{ opacity: 0, scale: 0.95 }}
         className="fixed inset-0 modal-backdrop flex items-center justify-center p-4 z-50"
       >
-        <div className="bg-white/95 backdrop-blur-lg rounded-2xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-white/20">
+        <div className="bg-white/95 backdrop-blur-lg rounded-2xl p-4 sm:p-6 max-w-2xl w-full mx-4 sm:mx-0 max-h-[90vh] overflow-y-auto shadow-2xl border border-white/20">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-gray-800">
               SMS Flow Simulation
@@ -355,11 +357,11 @@ export default function Dashboard() {
           </div>
 
           <div className="mb-6">
-            <div className="flex items-center space-x-2 mb-4">
+            <div className="flex items-center space-x-1 sm:space-x-2 mb-4 overflow-x-auto">
               {[1, 2, 3, 4, 5].map((step) => (
                 <div key={step} className="flex items-center">
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+                    className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-medium flex-shrink-0 ${
                       step <= smsStep
                         ? "bg-blue-500 text-white"
                         : "bg-gray-200 text-gray-500"
@@ -369,7 +371,7 @@ export default function Dashboard() {
                   </div>
                   {step < 5 && (
                     <div
-                      className={`w-12 h-1 mx-2 ${
+                      className={`w-8 sm:w-12 h-1 mx-1 sm:mx-2 flex-shrink-0 ${
                         step < smsStep ? "bg-blue-500" : "bg-gray-200"
                       }`}
                     />
@@ -406,7 +408,7 @@ export default function Dashboard() {
   const renderDashboard = () => (
     <div className="space-y-6">
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -500,7 +502,7 @@ export default function Dashboard() {
         <h3 className="text-lg font-semibold text-gray-800 mb-4">
           Quick Actions
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <button
             onClick={handleSMSFlow}
             className="flex items-center space-x-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
@@ -543,7 +545,7 @@ export default function Dashboard() {
       </motion.div>
 
       {/* Recent Activity */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -981,20 +983,26 @@ export default function Dashboard() {
       <header className="bg-white/90 backdrop-blur-lg shadow-sm border-b border-gray-200/50 relative z-[9999]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 lg:space-x-4">
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
                   <Heart className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-xl font-bold text-gray-800">
+                <span className="text-lg lg:text-xl font-bold text-gray-800">
                   Sulemait
                 </span>
               </div>
-              <span className="text-sm text-gray-500">
+              <span className="hidden sm:block text-sm text-gray-500">
                 SMS Greetings Platform
               </span>
             </div>
             <div className="flex items-center space-x-4">
+              <button
+                onClick={() => setShowMobileMenu(!showMobileMenu)}
+                className="lg:hidden text-gray-500 hover:text-gray-700"
+              >
+                <Menu className="w-6 h-6" />
+              </button>
               <NotificationCenter />
               <button className="text-gray-500 hover:text-gray-700">
                 <Settings className="w-5 h-5" />
@@ -1005,12 +1013,16 @@ export default function Dashboard() {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
-        <div className="flex space-x-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8 relative z-10">
+        <div className="flex flex-col lg:flex-row lg:space-x-8 space-y-4 lg:space-y-0">
           {/* Sidebar */}
-          <nav className="w-64 flex-shrink-0">
+          <nav
+            className={`w-full lg:w-64 flex-shrink-0 ${
+              showMobileMenu ? "block" : "hidden lg:block"
+            }`}
+          >
             <div className="bg-white/95 backdrop-blur-lg rounded-xl shadow-lg border border-white/20 p-4">
-              <div className="space-y-2">
+              <div className="flex lg:flex-col lg:space-y-2 space-x-2 lg:space-x-0 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0">
                 {[
                   { id: "dashboard", label: "Dashboard", icon: BarChart3 },
                   { id: "templates", label: "Templates", icon: Gift },
@@ -1030,7 +1042,7 @@ export default function Dashboard() {
                   <button
                     key={item.id}
                     onClick={() => setActiveTab(item.id)}
-                    className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-colors ${
+                    className={`flex-shrink-0 lg:w-full flex items-center space-x-2 lg:space-x-3 px-3 lg:px-4 py-2 lg:py-3 rounded-lg text-left transition-colors text-sm lg:text-base ${
                       activeTab === item.id
                         ? "bg-blue-50 text-blue-700 border border-blue-200"
                         : "text-gray-700 hover:bg-gray-50"
@@ -1045,7 +1057,7 @@ export default function Dashboard() {
           </nav>
 
           {/* Main Content */}
-          <main className="flex-1">
+          <main className="flex-1 w-full">
             <AnimatePresence mode="wait">
               {activeTab === "dashboard" && (
                 <motion.div

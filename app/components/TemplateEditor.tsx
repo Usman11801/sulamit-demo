@@ -129,7 +129,7 @@ export default function TemplateEditor({
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="bg-white/95 backdrop-blur-lg rounded-2xl p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-white/20"
+        className="bg-white/95 backdrop-blur-lg rounded-2xl p-4 sm:p-6 max-w-4xl w-full mx-4 sm:mx-0 max-h-[90vh] overflow-y-auto shadow-2xl border border-white/20"
       >
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-gray-800">
@@ -152,7 +152,7 @@ export default function TemplateEditor({
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
           {/* Form Section */}
           {!previewMode && (
             <div className="space-y-6">
@@ -173,7 +173,7 @@ export default function TemplateEditor({
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Category
                 </label>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {categories.map((category) => (
                     <button
                       key={category.id}
@@ -208,7 +208,7 @@ export default function TemplateEditor({
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Color Theme
                 </label>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {colors.map((color) => (
                     <button
                       key={color.id}
